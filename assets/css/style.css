@@ -1,0 +1,19 @@
+.jumbotron{
+	background: #33bb99;
+}
+h1{
+	text-align: center;
+	font-weight: bold;
+}
+.panel{
+	border: 1px solid lightgrey;
+}
+.panel-heading{
+	background: #33bb99;
+	font-weight: bold;
+}
+
+th{
+	font-weight: bold;
+	
+}
