@@ -26,8 +26,6 @@ $("#addTrain").on("click", function() {
 	frequency = $("#frequency-input").val().trim();
 	nextArrival = $("#time-input").val();
 
-	 
-
 	database.ref().set({
 		train: train,
 		destination: destination,
@@ -42,21 +40,25 @@ $("#addTrain").on("click", function() {
 
 // At the initial load, get a snapshot of the current data.
 database.ref().on("value", function(snapshot) {
+	//Log to console new train information:
 	console.log("New Train Info:");
 	console.log(snapshot.val().train);
 	console.log(snapshot.val().destination);
 	console.log(snapshot.val().frequency);
 	console.log(snapshot.val().nextArrival);
-	//console.log(snapshot.val().minutesAway);
+	//Work on function-->console.log(snapshot.val().minutesAway);
+
+	//Display to table
+	 var tblRows = $('table').children().eq(1).children('tr').eq(0).children('td');
+            tblRows.eq(0).html(snapshot.val().train);
+            tblRows.eq(1).html(snapshot.val().destination);
+            tblRows.eq(2).html(snapshot.val().frequency);
+            tblRows.eq(3).html(snapshot.val().nextArrival);
+
+
+
 
 // If any errors are experienced, log them to console.
 }, function (errorObject) {
   	console.log("The read failed: " + errorObject.code);
 });
-
-
-//log to console vars
-	console.log("Train: " + train);
-	console.log("Destination: " + destination);
-	console.log("Frequency: " + frequency);
-	console.log("Next Arrival: " + nextArrival);
