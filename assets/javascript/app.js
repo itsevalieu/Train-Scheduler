@@ -48,7 +48,7 @@ function nextArrival(fstTrain, freq){
 		// Next Train
 		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 		console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
-		return moment(nextTrain).format("HH:mm");
+		return moment(nextTrain).format("HH:mm A");
 }
 function minutesAway(fstTrain, freq){
 	// First Time (pushed back 1 year to make sure it comes before current time)
