@@ -22,9 +22,10 @@ var firstTrain; //military time
 //Functions
 function nextArrival(fstTrain, freq){	
 	// First Time (pushed back 1 year to make sure it comes before current time)
+	console.log("Run nextArrival function: ");
 		console.log("First Train: " + fstTrain);
-
 		console.log("Frequency: " + freq);
+
 		var firstTimeConverted = moment(fstTrain,"hh:mm").subtract(1, "years");
 		console.log(firstTimeConverted);
 
@@ -38,7 +39,7 @@ function nextArrival(fstTrain, freq){
 
 		// Time apart (remainder)
 		var tRemainder = diffTime % freq;
-		console.log(tRemainder);
+		console.log("Remainder: " + tRemainder);
 
 		// Minute Until Train
 		var tMinutesTillTrain = freq - tRemainder;
@@ -46,36 +47,24 @@ function nextArrival(fstTrain, freq){
 
 		// Next Train
 		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-	return nextTrain;
+		console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
+		return moment(nextTrain).format("HH:mm");
 }
 function minutesAway(fstTrain, freq){
 	// First Time (pushed back 1 year to make sure it comes before current time)
-		console.log("First Train: " + fstTrain);
+	console.log("Run minutesAway function: ");
+	console.log("First Train: " + fstTrain);
+	console.log("Frequency: " + freq);
 
-		console.log("Frequency: " + freq);
-		var firstTimeConverted = moment(fstTrain,"hh:mm").subtract(1, "years");
-		console.log(firstTimeConverted);
+	var firstTimeConverted = moment(fstTrain,"hh:mm").subtract(1, "years");
+	var currentTime = moment(); // Current Time
+	var diffTime = moment().diff(moment(firstTimeConverted), "minutes"); // Difference between the times
+	var tRemainder = diffTime % freq; // Time apart (remainder)
 
-	// Current Time
-		var currentTime = moment();
-		console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+	// Minute Until Train
+	var tMinutesTillTrain = freq - tRemainder;
+	console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
-		// Difference between the times
-		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-		console.log("DIFFERENCE IN TIME: " + diffTime);
-
-		// Time apart (remainder)
-		var tRemainder = diffTime % freq;
-		console.log(tRemainder);
-
-		// Minute Until Train
-		var tMinutesTillTrain = freq - tRemainder;
-		console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-
-		// Next Train
-		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 	return tMinutesTillTrain;
 }
 
@@ -95,7 +84,6 @@ $("#addTrain").on("click", function() {
 		frequency: frequency,
 		firstTrain: firstTrain,
 		dateAdded: firebase.database.ServerValue.TIMESTAMP
-
 	});
 	
 	train.val("");
@@ -109,8 +97,7 @@ $("#addTrain").on("click", function() {
 // At the initial load, get a snapshot of the current data.
 database.ref().on("child_added", function(childSnapshot){
 	//Log to console new train information:
-	console.log("New Train Info:");
-	console.log(childSnapshot.val().train);
+	console.log("New Train Info: " + childSnapshot.val().train);
 	console.log(childSnapshot.val().destination);
 	console.log(childSnapshot.val().frequency);
 	console.log(childSnapshot.val().firstTrain);
@@ -134,7 +121,6 @@ database.ref().on("child_added", function(childSnapshot){
 	destTD.append(childDestination);
 	freqTD.append(childFrequency);
 	nextArrivalTD.append(nextArrival(childFirstTrain, childFrequency)); //not displaying correctly
-	console.log(nextArrival(childFirstTrain, childFrequency));
 	minAwayTD.append(minutesAway(childFirstTrain, childFrequency)); //same times always? Why.
 
 	newRow.append(trainTD);
