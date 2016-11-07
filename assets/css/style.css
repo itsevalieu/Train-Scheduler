@@ -1,5 +1,7 @@
 .jumbotron{
 	background: #33bb99;
+	text-align: center;
+	font-weight: bold;
 }
 h1{
 	text-align: center;

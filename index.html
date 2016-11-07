@@ -10,6 +10,7 @@
 <div class="jumbotron">
 	<div class="container">
 	  <h1>Trains, Trains, and More Trains</h1>
+	  <p>Check when your train is arriving!</p>
 	</div>
 </div>
 <div class="container">
@@ -20,35 +21,15 @@
 	  <table class="table">
 		<thead>
 		    <tr>
-		    	<th id="trainCol" class="col-sm-2">Train Name</th>
-		    	<th id="destinCol" class="col-sm-2">Destination</th>
-		    	<th id="freqCol" class="col-sm-2">Frequency (min)</th>
-		    	<th id="nextArrCol" class="col-sm-2">Next Arrival</th>
-		    	<th id="minCol" class="col-sm-2">Minutes Away</th>
+		    	<th class="col-sm-2">Train Name</th>
+		    	<th class="col-sm-2">Destination</th>
+		    	<th class="col-sm-2">Frequency (min)</th>
+		    	<th class="col-sm-2">Next Arrival</th>
+		    	<th class="col-sm-2">Minutes Away</th>
 		    </tr>
 	    </thead>
 	    <tbody>
-		    <tr>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    </tr>
-		    <tr>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    </tr>
-		    <tr>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    	<td class="col-sm-2"></td>
-		    </tr>
+		   <!--insert appended table rows with data-->
 		</tbody>
 	  </table>
 	</div>
@@ -66,8 +47,8 @@
 					<input type="text" class="form-control" id="destination-input">
 				</div>
 				<div class="form-group">
-					<label for="text">First Train Time (HH:mm - miliary time)</label>
-					<input type="time" class="form-control" id="time-input">
+					<label for="text">First Train Time (HH:mm AM/PM)</label>
+					<input type="time" name="my_time" class="form-control" id="firstTrain-input">
 				</div>
 				<div class="form-group">
 					<label for="text">Frequency (min)</label>
@@ -82,5 +63,6 @@
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
 <script src="assets/javascript/app.js"></script>
+<script src="assets/javascript/moment.js"></script>
 </body>
 </html>
